@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../firebaseConfig";
+import auth from "../firebaseConfig";
 
 const RealizarLogin = ({ navigation }) => {
   const img =
