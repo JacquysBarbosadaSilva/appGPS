@@ -17,7 +17,7 @@ import auth from "../firebaseConfig";
 
 const RealizarLogin = ({ navigation }) => {
   const img =
-    "https://www.canva.com/design/DAGmrpWQ2ks/5Jr16aeEvf7_dFZvQHkc-g/view";
+    "https://bucket-storage-senai-25.s3.us-east-1.amazonaws.com/imagens/imf-fundo-login.png";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
