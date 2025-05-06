@@ -16,7 +16,7 @@ import app from "../firebaseConfig";
 
 const RealizarLogin = ({ navigation }) => {
   const img =
-    "https://img.freepik.com/vetores-gratis/vetor-azul-escuro-do-fundo-da-historia-do-facebook-de-memphis_53876-162121.jpg?t=st=1743519404~exp=1743523004~hmac=0956c84fe373416ac4719a6be4a53a27d5f2f68a70c952c7f34477f065057055&w=740";
+    "https://www.canva.com/design/DAGmrpWQ2ks/5Jr16aeEvf7_dFZvQHkc-g/view";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
