@@ -59,7 +59,7 @@ const RealizarLogin = ({ navigation }) => {
 
         <Text 
             // onPress={() => navigation.navigate("Cadastrar")} 
-            style={{ color: "#0C242E",fontWeight: 'bold'}} >Cadastrar-se
+            style={styles.cadastrar} >Cadastrar-se
           </Text>
       </View>
     </ImageBackground>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
   },
   button: {
-    backgroundColor: "#0C242E",
+    backgroundColor: "#1B0000",
     padding: 10,
     borderRadius: 5,
     alignItems: "center",
@@ -104,6 +104,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
   },
+  cadastrar:{
+    color: "#0C242E",
+    fontWeight: 'bold',
+    marginTop: 10,
+  }
 });
 
 export default RealizarLogin;
