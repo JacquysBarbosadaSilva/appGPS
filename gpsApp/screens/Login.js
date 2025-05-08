@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   cadastrar:{
-    color: "#0C242E",
+    color: "#1B0000",
     fontWeight: 'bold',
     marginTop: 10,
   }
