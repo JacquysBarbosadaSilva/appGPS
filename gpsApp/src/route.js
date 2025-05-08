@@ -5,7 +5,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Login from "../screens/Login";
 import HomeScreen from "../screens/Home";
+import Rotas from "../screens/Rotas";
 import Perfil from "../screens/Perfil"; 
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -23,6 +25,7 @@ function DrawerNavigator() {
           ),
         }}
       />
+
       <Drawer.Screen
         name="Perfil"
         component={Perfil} 
@@ -33,24 +36,35 @@ function DrawerNavigator() {
           ),
         }}
       />
-      
+
     </Drawer.Navigator>
   );
 }
 
 function StackNavigator() {
   return (
+
     <Stack.Navigator initialRouteName="Login">
+
       <Stack.Screen
         name="Login"
         component={Login}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen
         name="HomeScreen"
         component={DrawerNavigator}
         options={{ headerShown: false }}
       />
+      
+      <Stack.Screen
+        name="Rotas"
+        component={Rotas}
+        options={{ headerShown: true }}
+      />
+      
+      
     </Stack.Navigator>
   );
 }

@@ -1,86 +1,91 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import * as Location from 'expo-location';
+import MapView, { Marker } from 'react-native-maps';
 
-const Home = () => {
-  const [origem, setOrigem] = useState('');
-  const [destino, setDestino] = useState('');
+export default function HomeScreen({ navigation }) {
+  const [location, setLocation] = useState(null);
+  const [destination, setDestination] = useState('');
 
-  const tentarLogar = () => {
-    console.log(`Origem: ${origem}, Destino: ${destino}`);
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Permissão de localização negada');
+        return;
+      }
+
+      const loc = await Location.getCurrentPositionAsync({});
+      setLocation(loc.coords);
+    })();
+  }, []);
+
+  const handleNavigate = () => {
+    if (!destination || !location) return;
+    navigation.navigate('Rotas', { destination, origin: location });
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Por favor, insira o destino desejado.</Text>
-      </View>
+    <View style={styles.container}>
+      {location && (
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: location.latitude,
+            longitude: location.longitude,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
+          }}
+        >
+          <Marker coordinate={location} title="Você está aqui" />
+        </MapView>
+      )}
 
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          placeholder="Origem"
-          value={origem}
-          onChangeText={setOrigem}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Destino"
-          value={destino}
-          onChangeText={setDestino}
-        />
-        <TouchableOpacity style={styles.button} onPress={tentarLogar}>
-          <Text style={styles.buttonText}>Pesquisar rota</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+      <TextInput
+        style={styles.input}
+        placeholder="Digite o destino"
+        value={destination}
+        onChangeText={setDestination}
+      />
+
+      <TouchableOpacity style={styles.button} onPress={handleNavigate}>
+        <Text style={styles.buttonText}>Navegar</Text>
+      </TouchableOpacity>
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   },
-  header: {
-    alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-    textAlign: 'center',
-  },
-  form: {
-    paddingHorizontal: 20,
+  map: {
+    flex: 1,
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 12,
+    position: 'absolute',
+    top: 40,
+    left: 10,
+    right: 10,
+    backgroundColor: 'white',
+    padding: 10,
     borderRadius: 8,
-    marginBottom: 10,
-    backgroundColor: '#f9f9f9',
+    elevation: 2,
   },
   button: {
-    backgroundColor: '#1B0000',
-    padding: 12,
+    position: 'absolute',
+    bottom: 40,
+    left: 10,
+    right: 10,
+    backgroundColor: 'green',
+    padding: 15,
     borderRadius: 8,
     alignItems: 'center',
-    marginTop: 10,
+    elevation: 3,
   },
   buttonText: {
-    color: '#fff',
+    color: 'white',
     fontWeight: 'bold',
+    fontSize: 16,
   },
 });
-
-export default Home;

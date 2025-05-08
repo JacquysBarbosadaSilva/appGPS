@@ -9,11 +9,10 @@ import {
   TouchableOpacity,
   ImageBackground,
   StyleSheet,
+  Alert,
 
 } from "react-native";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import app from "../firebaseConfig";
-import auth from "../firebaseConfig";
+
 
 const RealizarLogin = ({ navigation }) => {
   const img =
@@ -22,15 +21,20 @@ const RealizarLogin = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   const tentarLogar = () => {
-    const auth = getAuth(app);
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        navigation.navigate("HomeScreen");
-      })
-      .catch((error) => {
-        console.error("Login Falhou", error);
-      });
-  };
+    
+    const validEmail = 'teste@gmail.com';
+    const validPass = '1234';
+
+    if (email === validEmail && password === validPass) {
+      Alert.alert('Sucesso', 'Login realizado com sucesso!');
+      navigation.navigate("HomeScreen");
+    } else {
+      Alert.alert('Erro', 'Usuário ou senha incorretos.');
+    }
+    navigation.navigate("HomeScreen");
+  }
+
+  
 
   return (
     <ImageBackground source={{ uri: img }} style={styles.background}>
