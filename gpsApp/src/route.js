@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Login from "../screens/Login";
 import HomeScreen from "../screens/Home";
+import Rotas from "../screens/Rotas";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,6 +27,17 @@ function DrawerNavigator() {
           ),
         }}
       />
+
+      <Drawer.Screen
+        name="Rotas"
+        component={Rotas}
+        options={{
+          drawerLabel: "Rotas",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -33,18 +45,27 @@ function DrawerNavigator() {
 function StackNavigator() {
   return (
     <Stack.Navigator>
+
       <Stack.Screen
         initialRouteName="Login"
         name="Login"
         options={{ headerShown: false }}
         component={Login}
       />
-      
+
       <Stack.Screen
         name="HomeScreen"
         component={DrawerNavigator}
         options={{ headerShown: false }}
       />
+      
+      <Stack.Screen
+        name="Rotas"
+        component={DrawerNavigator}
+        options={{ headerShown: false }}
+      />
+      
+      
     </Stack.Navigator>
   );
 }
