@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const ProfileScreen = () => {
-  const [profileImage, setProfileImage] = useState('https://i.pravatar.cc/150?img=3');
+  const [profileImage, setProfileImage] = useState('https://bucket-storage-senai-25.s3.us-east-1.amazonaws.com/imagens/img-perfilGPS.png');
   const navigation = useNavigation();
 
   const user = {
