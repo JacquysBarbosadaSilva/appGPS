@@ -5,9 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Login from "../screens/Login";
 import HomeScreen from "../screens/Home";
-
 import Rotas from "../screens/Rotas";
-
 import Perfil from "../screens/Perfil"; 
 
 
@@ -22,18 +20,6 @@ function DrawerNavigator() {
         component={HomeScreen}
         options={{
           drawerLabel: "Home",
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
-          ),
-        }}
-      />
-
-
-      <Drawer.Screen
-        name="Rotas"
-        component={Rotas}
-        options={{
-          drawerLabel: "Rotas",
           drawerIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
@@ -74,8 +60,8 @@ function StackNavigator() {
       
       <Stack.Screen
         name="Rotas"
-        component={DrawerNavigator}
-        options={{ headerShown: false }}
+        component={Rotas}
+        options={{ headerShown: true }}
       />
       
       
