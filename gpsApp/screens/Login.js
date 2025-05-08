@@ -31,7 +31,6 @@ const RealizarLogin = ({ navigation }) => {
     } else {
       Alert.alert('Erro', 'Usuário ou senha incorretos.');
     }
-    navigation.navigate("HomeScreen");
   }
 
   

@@ -97,7 +97,7 @@ const RouteScreen = ({ route }) => {
   if (loading || !destCoords) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="black" />
         <Text>Carregando rota...</Text>
       </View>
     );
@@ -114,10 +114,10 @@ const RouteScreen = ({ route }) => {
           longitudeDelta: 0.05,
         }}
       >
-        <Marker coordinate={origin} title="Origem" />
-        <Marker coordinate={destCoords} title="Destino" />
+        <Marker coordinate={origin} title="Origem" pinColor='#2A3A54' />
+        <Marker coordinate={destCoords} title="Destino" pinColor='#2A3A54' />
         {routeCoords.length > 0 && (
-          <Polyline coordinates={routeCoords} strokeWidth={5} strokeColor="blue" />
+          <Polyline coordinates={routeCoords} strokeWidth={5} strokeColor="black" />
         )}
       </MapView>
 
@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     elevation: 5,
+    marginBottom: 30,
   },
   loadingContainer: {
     flex: 1,

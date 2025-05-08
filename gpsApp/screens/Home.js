@@ -37,7 +37,7 @@ export default function HomeScreen({ navigation }) {
             longitudeDelta: 0.01,
           }}
         >
-          <Marker coordinate={location} title="Você está aqui" />
+          <Marker coordinate={location} title="Você está aqui" pinColor='#2A3A54' />
         </MapView>
       )}
 
@@ -77,11 +77,12 @@ const styles = StyleSheet.create({
     bottom: 40,
     left: 10,
     right: 10,
-    backgroundColor: 'green',
+    backgroundColor: 'black',
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
     elevation: 3,
+    marginBottom: 20,
   },
   buttonText: {
     color: 'white',
