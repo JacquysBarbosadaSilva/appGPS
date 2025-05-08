@@ -1,10 +1,13 @@
+// src/route.js
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const ProfileScreen = () => {
   const [profileImage, setProfileImage] = useState('https://i.pravatar.cc/150?img=3');
+  const navigation = useNavigation();
 
   const user = {
     name: 'Nathan João',
@@ -44,19 +47,22 @@ const ProfileScreen = () => {
         <Text style={styles.sectionTitle}>Configurações</Text>
         <Option icon="navigate" label="Destino favorito" />
         <Option icon="location" label="Endereço atual" />
-        <Option icon="map" label="Histórico de rotas" />
+        <Option 
+          icon="map" 
+          label="Histórico de rotas" 
+          onPress={() => navigation.navigate('HistoricoRotas')} 
+        />
       </View>
     </ScrollView>
   );
 };
 
-const Option = ({ icon, label }) => (
-    <TouchableOpacity style={styles.option}>
-      <Ionicons name={icon} size={22} color="#333" style={styles.icon} />
-      <Text style={styles.optionText}>{label}</Text>
-    </TouchableOpacity>
-  );
-  
+const Option = ({ icon, label, onPress }) => (
+  <TouchableOpacity style={styles.option} onPress={onPress}>
+    <Ionicons name={icon} size={22} color="#333" style={styles.icon} />
+    <Text style={styles.optionText}>{label}</Text>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   container: {
